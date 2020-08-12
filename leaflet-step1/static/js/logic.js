@@ -52,7 +52,11 @@ function createMap(earthquakes) {
         id: "mapbox/streets-v11",
         accessToken: API_KEY
     });
-
+    var map = L.map("map", {
+        center: [15.5994, -28.6731],
+        zoom: 3,
+        layers: [basemap, earthquakes]
+    });
 
 }    
 
