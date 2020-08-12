@@ -19,6 +19,16 @@ function createMarkers (earthquakeData) {
     }
 
 
+    function myStyle(feature) {
+
+        return{
+        radius: feature.properties.mag * 4,
+        fillColor: colorfunction(feature.properties.mag),
+        color: "black",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8}
+    };
 
 }
 
