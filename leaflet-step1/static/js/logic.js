@@ -78,7 +78,20 @@ function createMap(earthquakes) {
         zoom: 3,
         layers: [basemap, earthquakes]
     });
-
+    var legend = L.control({ position: "bottomright" });
+    legend.onAdd = function() {
+        var legend2 = L.DomUtil.create("div", "info legend"), 
+        levels = [0, 1, 2, 3, 4, 5];
+        colors = ["#f40202", "green", "yellow", "orange", "red"];
+    
+        for (var i = 0; i < levels.length; i++) {
+            legend2.innerHTML +=
+            `<i style='background: "${colors[i]}"'></i>`            +
+                levels[i] + (levels[i] ? '&ndash;' + levels[i + 1] + '<br>' : '+');
+        }
+        return legend2;
+    };
+    legend.addTo(map)
 }    
 
 
