@@ -12,19 +12,22 @@ function colorfunction(mag) {
 
     var color = "";
     if (mag < 1) {
-      return("blue");
+      return("#98ee00");
     }
     else if (mag < 2) {
-      return("green");
+      return("#d4ee00");
     }
     else if (mag < 3) {
-      return("yellow");
+      return("#eecc00");
     }
     else if (mag < 4) {
-        return("orange");
+        return("#ee9c00");
     }
-    else if (mag >= 4) {
-        return("red");
+    else if (mag < 5) {
+        return("#ea822c");
+    }
+    else if (mag >= 5) {
+        return("#ea2c2c");
     }
     
 }
@@ -78,20 +81,39 @@ function createMap(earthquakes) {
         zoom: 3,
         layers: [basemap, earthquakes]
     });
-    var legend = L.control({ position: "bottomright" });
+
+    //construct legend
+    var legend = L.control({
+    position: "bottomright"
+    });
+//create div on add
     legend.onAdd = function() {
-        var legend2 = L.DomUtil.create("div", "info legend"), 
-        levels = [0, 1, 2, 3, 4, 5];
-        colors = ["#f40202", "green", "yellow", "orange", "red"];
-    
-        for (var i = 0; i < levels.length; i++) {
-            legend2.innerHTML +=
-            `<i style='background: "${colors[i]}"'></i>`            +
-                levels[i] + (levels[i] ? '&ndash;' + levels[i + 1] + '<br>' : '+');
-        }
-        return legend2;
-    };
-    legend.addTo(map)
+    var div = L
+      .DomUtil
+      .create("div", "info legend");
+//color/label arrays
+    var grades = [0, 1, 2, 3, 4, 5];
+    var colors = [
+      "#98ee00",
+      "#d4ee00",
+      "#eecc00",
+      "#ee9c00",
+      "#ea822c",
+      "#ea2c2c"
+    ];
+//loop for defining the html of the div itself
+    for (var i = 0; i < grades.length; i++) {
+      
+        div.innerHTML += "<i style='background: " + colors[i] + "'></i> " +
+        grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
+    }
+    return div;
+  };
+//add it to the map
+  legend.addTo(map);
+
+
+
 }    
 
 
