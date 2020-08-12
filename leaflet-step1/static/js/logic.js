@@ -8,8 +8,6 @@ d3.json(queryUrl, function(data) {
   createMarkers(data.features);
 });
 
-
-
 function createMarkers (earthquakeData) {
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
@@ -39,8 +37,17 @@ function createMarkers (earthquakeData) {
         style: myStyle
     });
     
-
+    // Sending our earthquakes layer to the createMap function
+    createMap(earthquakes);
 }
+
+
+function createMap(earthquakes) {
+// Create a map object
+
+
+
+}    
 
 
 
