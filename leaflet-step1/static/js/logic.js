@@ -8,6 +8,27 @@ d3.json(queryUrl, function(data) {
   createMarkers(data.features);
 });
 
+function colorfunction(mag) {
+
+    var color = "";
+    if (mag < 1) {
+      return("blue");
+    }
+    else if (mag < 2) {
+      return("green");
+    }
+    else if (mag < 3) {
+      return("yellow");
+    }
+    else if (mag < 4) {
+        return("orange");
+    }
+    else if (mag >= 4) {
+        return("red");
+    }
+    
+}
+
 function createMarkers (earthquakeData) {
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
